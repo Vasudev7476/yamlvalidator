@@ -7,7 +7,7 @@ import software.amazon.awssdk.services.sns.model.PublishRequest;
 @Service
 public class SnsNotificationService {
     private final SnsClient snsClient;
-    private final String topicArn = "arn:aws:sns:us-east-1:515966521705:YamlValidation";
+    private final String topicArn = "arn:aws:sns:ap-south-1:585008061439:yml_error_notification";
 
     // ✅ Inject SnsClient via constructor
     public SnsNotificationService(SnsClient snsClient) {
