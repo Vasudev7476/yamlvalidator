@@ -10,6 +10,7 @@ import software.amazon.awssdk.services.sns.SnsClient;
 public class AwsConfig {
     @Bean
     public SnsClient snsClient() {
+        AwsCredentials credentials = DefaultCredentialsProvider.create().resolveCredentials();
         return SnsClient.builder()
                 .region(Region.US_EAST_1)  // Set your AWS region
                 .credentialsProvider(DefaultCredentialsProvider.create())
