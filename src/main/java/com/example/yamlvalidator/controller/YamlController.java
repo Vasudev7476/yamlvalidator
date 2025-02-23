@@ -24,15 +24,11 @@ public class YamlController {
     }
 
     @PostMapping("/validate")
-    public ValidationResult validateYaml(@RequestParam("file") MultipartFile file) {
-        try {
-            ValidationResult result = validationService.validateYaml(file.getInputStream());
-            if (!result.isValid()) {
-                snsService.sendFailureNotification(result.getMessage());
-            }
-            return result;
-        } catch (IOException e) {
-            return new ValidationResult(false, "Error reading file: " + e.getMessage());
+    public ValidationResult validateYaml(@RequestParam("file") MultipartFile file) throws IOException {
+        ValidationResult result = validationService.validateYaml(file.getInputStream());
+        if (!result.isValid()) {
+            snsService.sendFailureNotification(result.getMessage());
         }
+        return result;
     }
 }

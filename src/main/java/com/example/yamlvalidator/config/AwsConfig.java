@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
-import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.sns.SnsClient;
@@ -25,7 +24,7 @@ public class AwsConfig {
     public SnsClient snsClient() {
           AwsBasicCredentials awsCreds = AwsBasicCredentials.create(accessKeyId, secretKey);
         return SnsClient.builder()
-                .region(Region.US_EAST_1)  // Set your AWS region
+                .region(Region.of(region)) 
                 .credentialsProvider(StaticCredentialsProvider.create(awsCreds))
                 .build();
     }
